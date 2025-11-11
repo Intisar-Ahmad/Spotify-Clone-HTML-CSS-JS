@@ -41,7 +41,7 @@ async function getData(folder) {
 }
 function playMusic(track) {
     let play = document.querySelector(".playinsong");
-    play.setAttribute("src", "pause.svg");
+    play.setAttribute("src", "/images/pause.svg");
     play.style.width = "18px"
     let vol = document.getElementById("vol")
     currenSong.volume = vol.value / 100;
@@ -60,7 +60,7 @@ async function main() {
         deletelist();
         currfolder = item.dataset.folder;
         songs = await getData(item.dataset.folder);
-        makelist()
+        makelist();
     }
         let a = await fetch("http://127.0.0.1:3000/songs");
         let div = document.createElement("div");
@@ -80,9 +80,9 @@ async function main() {
             let randimg = Math.round(Math.random() * (6-1) + 1)
             cardcontainer.innerHTML+=` <div data-folder="${a}" class="card">
             <div  class="play">
-                <img  src="play.svg">
+                <img  src="/images/play.svg">
             </div>
-            <img src="musicCover${randimg}.jpg" alt="lady">
+            <img src="/images/musicCover${randimg}.jpg" alt="lady">
             <h2>${a.replaceAll(/%20/g," ")}</h2>
            </div>`
         }
@@ -114,7 +114,7 @@ async function main() {
             let str = song.split('%5C')[3]
             console.log(str)
            
-            li.innerHTML = `<div><img src = "headphones.svg"><div class = "info">${str.replaceAll(/%20|.mp3/g, " ")}</div></div> <div class = "playnow"><img src = "play.svg"> Play Now </div>`;
+            li.innerHTML = `<div><img src = "/images/headphones.svg"><div class = "info">${str.replaceAll(/%20|.mp3/g, " ")}</div></div> <div class = "playnow"><img src = "/images/play.svg"> Play Now </div>`;
             li.innerHTML.trim();
             li.querySelector(".playnow").style.cursor = "pointer";
             let img = li.querySelectorAll("img");
@@ -146,13 +146,13 @@ async function main() {
         }
         else {
             if (currenSong.paused) {
-                playbtn.setAttribute("src", "pause.svg");
+                playbtn.setAttribute("src", "/images/pause.svg");
                 playbtn.style.width = "18px";
                 currenSong.play();
 
             }
             else {
-                playbtn.setAttribute("src", "play.svg");
+                playbtn.setAttribute("src", "/images/play.svg");
                 playbtn.style.width = "30px";
                 currenSong.pause();
 
@@ -218,7 +218,7 @@ async function main() {
             songtime.innerText = `0${minutes}:0${seconds}/${Minuteduration}:${Secondduration}`;
         }
         if (currenSong.ended) {
-            playbtn.setAttribute("src", "play.svg");
+            playbtn.setAttribute("src", "/images/play.svg");
             playbtn.style.width = "30px";
             nextbtn.click()
         }
@@ -250,12 +250,12 @@ async function main() {
                 let vol = document.querySelector(".volume input")
                 if (currenSong.volume != 0) {
                     currenSong.volume = 0;
-                    songtimeimg.setAttribute("src", "mute.svg");
+                    songtimeimg.setAttribute("src", "/images/mute.svg");
                     songtimeimg.style.width = "20px";
                 }
                 else {
                     currenSong.volume = vol.value / 100;
-                    songtimeimg.setAttribute("src", "highvolume.svg");
+                    songtimeimg.setAttribute("src", "/images/highvolume.svg");
                     songtimeimg.style.width = "20px";
                 }
             }
@@ -269,15 +269,15 @@ async function main() {
     volume.addEventListener("change", (e) => {
         currenSong.volume = e.target.value / 100;
         if (currenSong.volume >= 0.5) {
-            volimg.setAttribute("src", "highvolume.svg");
+            volimg.setAttribute("src", "/images/highvolume.svg");
             volimg.style.width = "20px";
         }
         else if (currenSong.volume <= 0.5 && currenSong.volume > 0) {
-            volimg.setAttribute("src", "lowvolume.svg");
+            volimg.setAttribute("src", "/images/lowvolume.svg");
             volimg.style.width = "17px";
         }
         else {
-            volimg.setAttribute("src", "novolume.svg");
+            volimg.setAttribute("src", "/images/novolume.svg");
             volimg.style.width = "12px";
         }
     })
@@ -298,7 +298,7 @@ if (mediaQuery.matches) {
     left.style.width = "70vw"
     let home = document.querySelector(".home");
     let insideclose = document.createElement("div");
-    insideclose.innerHTML = "<img src='hamburger.svg' class='invert-colorandOpacity closeleft'>"
+    insideclose.innerHTML = "<img src='/images/hamburger.svg' class='invert-colorandOpacity closeleft'>"
     insideclose.style.display = "flex";
     insideclose.style.alignItems = "center";
     insideclose.style.cursor = "pointer";

@@ -27,6 +27,7 @@ function getSongNameFromUrl(href) {
 
         if (normalizedHref.includes("/songs/")) {
             let songName = normalizedHref.split("/")[normalizedHref.split("/").length - 1];
+            songName = songName.replace(".mp3", "");
             return songName;
 
         }
@@ -90,6 +91,7 @@ function playMusic(track) {
     // console.log(songinfo)
     // console.log(track)
     songinfo.innerHTML = getSongNameFromUrl(track);
+    // console.log(songinfo.innerHTML)
 }
 async function main() {
     let songs = await getData(currfolder);
